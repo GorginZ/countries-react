@@ -6,11 +6,26 @@ import Countries from "./Countries";
 import React, { Component } from "react";
 
 class App extends Component {
-    render() {
+constructor() {
+    super()
+    this.state = { data: [] };
+}
 
-        
+componentDidMount() {
+    fetch("https://restcountries.eu/rest/v2/all")
+.then((res) => res.json())
+.then((data) => console.log(data))
+}
+
+
+    render() {
         return (
             <>
+            {this.state.data.map(el => (
+                <li>
+                    {el.country}
+                </li>
+            ))}
             <Countries> </Countries>
             <div>Hello world</div>
 
